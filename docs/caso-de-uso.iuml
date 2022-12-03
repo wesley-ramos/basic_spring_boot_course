@@ -1,0 +1,17 @@
+@startuml Caso de uso
+
+left to right direction
+
+actor "Bibliotecário" as bibliotecario
+
+rectangle "Sistema para gestão de livros" {
+  usecase "Cadastra um autor" as A
+  usecase "Cadastra um livro" as B
+  usecase "Consultar os livros" as C
+}
+
+bibliotecario --> A
+bibliotecario --> B
+bibliotecario --> C
+
+@enduml
