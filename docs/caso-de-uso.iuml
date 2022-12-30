@@ -2,16 +2,16 @@
 
 left to right direction
 
-actor "Bibliotecário" as bibliotecario
+actor "Usuário" as usuario
 
-rectangle "Sistema para gestão de livros" {
-  usecase "Cadastra um autor" as A
-  usecase "Cadastra um livro" as B
-  usecase "Consultar os livros" as C
+rectangle "Sistema para gestão pessoal" {
+  usecase "Cadastrar um projeto" as A
+  usecase "Cadastrar um hábito" as B
+  usecase "Cadastrar uma meta" as C
 }
 
-bibliotecario --> A
-bibliotecario --> B
-bibliotecario --> C
+usuario --> A
+usuario --> B
+usuario --> C
 
 @enduml
