@@ -2,16 +2,17 @@
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-LAYOUT_LEFT_RIGHT()
+LAYOUT_TOP_DOWN()
 
-AddElementTag("construir", $legendText="Vamos construir nesse vídeo", $fontColor="#ffffff", $bgColor="#08427B")
+AddElementTag("project", $legendText="Vamos construir nesse vídeo", $fontColor="#ffffff", $bgColor="#08427B")
 
 System(browser, "Browser", "Chrome, Firefox, Internet Explorer")
 
-System_Boundary(c1, "Sistema para gestão de livros") {
-  Container(frontend, "Front-end", "React", "Interface onde bibliotecário realiza as operações")
-  Container(api, "API", "Java, Spring Boot", "Uma API com as operações para gerenciar os livros", $tags="construir")
-  ContainerDb(database, "Database", "MySQL", "Banco de dados com as informações de autores e livros", $tags="construir")
+System_Boundary(c1, "Sistema para gestão pessoal") {
+  Container(frontend, "Front-end", "React", "Interface onde o usuário realiza as operações")
+  Container(api, "API", "Java, Spring Boot", "Uma API com as operações para gerenciar projetos, hábitos e métas", $tags="project")
+  ContainerQueue(message_broker, "Message Broker", "Rabbit MQ", "", $tags="project")
+  ContainerDb(database, "Database", "MySQL", "Banco de dados com as informações", $tags="project")
 }
 
 Rel(browser, frontend, "1. Carrega o front-end", "HTTPS")
@@ -19,5 +20,7 @@ Rel(browser, api, "2. Realiza as requisições", "HTTPS")
 
 Rel(api, database, "4. Consulta", "TCP")
 Rel(api, database, "3. Armazena", "TCP")
+
+Rel(api, message_broker, "5. Publica eventos", "AMQP")
 
 @enduml
